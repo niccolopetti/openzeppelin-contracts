@@ -230,7 +230,7 @@ library EnumerableSet {
      * already present.
      */
     function add(AddressSet storage set, address value) internal returns (bool) {
-        return _add(set._inner, bytes32(uint256(uint160(value))));
+        return _add(set._inner, bytes32(bytes20(value))>>96);
     }
 
     /**
@@ -240,14 +240,14 @@ library EnumerableSet {
      * present.
      */
     function remove(AddressSet storage set, address value) internal returns (bool) {
-        return _remove(set._inner, bytes32(uint256(uint160(value))));
+        return _remove(set._inner, bytes32(bytes20(value))>>96);
     }
 
     /**
      * @dev Returns true if the value is in the set. O(1).
      */
     function contains(AddressSet storage set, address value) internal view returns (bool) {
-        return _contains(set._inner, bytes32(uint256(uint160(value))));
+        return _contains(set._inner, bytes32(bytes20(value))>>96);
     }
 
     /**
